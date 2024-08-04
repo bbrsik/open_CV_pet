@@ -1,4 +1,5 @@
 import os
+import numpy
 import cv2
 from settings import ASSETS_DIR
 from utility import should_rename_files_in_folder, rename_files_in_folder
@@ -33,3 +34,26 @@ def display_images(folder: str):
     print(f"Finished displaying files in folder: '{ASSETS_DIR}'.")
     return 0
 
+
+def camera():
+    capture = cv2.VideoCapture(0)
+
+    while True:
+        ret, frame = capture.read()
+        width = int(capture.get(3))
+        height = int(capture.get(4))
+
+        image = numpy.zeros(frame.shape, numpy.uint8)
+        smaller_frame = cv2.resize(frame, None, fx=0.5, fy=1)
+
+        image[0:, :width // 2] = smaller_frame
+        image[0:, width // 2:] = cv2.rotate(smaller_frame, cv2.ROTATE_180)
+
+        cv2.imshow("CameraOutput (press 'q' to exit)", image)
+
+        if cv2.waitKey(1) in [ord("q"), ord("Q")]:
+            break
+
+    capture.release()
+    cv2.destroyAllWindows()
+    exit()

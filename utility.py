@@ -33,3 +33,7 @@ def rename_files_in_folder(folder: str):
         os.rename(source, f"{folder}/{destination}")
 
     return 0
+
+
+def resize_image(image):
+    pass
