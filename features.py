@@ -57,3 +57,30 @@ def camera():
     capture.release()
     cv2.destroyAllWindows()
     exit()
+
+
+def object_detector(haarcascade_filepath: str):
+    haarcascade = haarcascade_filepath
+    capture = cv2.VideoCapture(0)
+    capture.set(3, 640)  # w
+    capture.set(4, 480)  # H
+
+    while True:
+        ret, frame = capture.read()
+
+        face_cascade = cv2.CascadeClassifier(haarcascade)
+        frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+        face = face_cascade.detectMultiScale(frame_gray, 1.1, 4)
+
+        for (x, y, w, h) in face:
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0))
+
+        cv2.imshow("ObjectDetector (press 'q' to exit)", frame)
+
+        if cv2.waitKey(1) in [ord("q"), ord("Q")]:
+            break
+
+    capture.release()
+    cv2.destroyAllWindows()
+    exit()
