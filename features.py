@@ -59,11 +59,11 @@ def camera():
     exit()
 
 
-def object_detector(haarcascade_filepath: str):
+def object_detector(haarcascade_filepath: str, capture_file=0):
     haarcascade = haarcascade_filepath
-    capture = cv2.VideoCapture(0)
-    capture.set(3, 640)  # w
-    capture.set(4, 480)  # H
+    capture = cv2.VideoCapture(capture_file)
+    capture.set(3, 640//2)  # w
+    capture.set(4, 480//2)  # H
 
     while True:
         ret, frame = capture.read()
