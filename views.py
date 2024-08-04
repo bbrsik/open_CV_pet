@@ -15,8 +15,9 @@ def display_images(folder: str):
         print(f"Folder '{ASSETS_DIR}' is empty!")
         return -1
 
+    print(f"Displaying images in folder: '{ASSETS_DIR}'.")
     for img_name in images:
-        print(img_name)
+        print(f"Displaying {img_name}...")
 
         img = cv2.imread(f"assets/{img_name}", 0)
         img = cv2.resize(img, (400, 400))
@@ -24,5 +25,7 @@ def display_images(folder: str):
         cv2.imshow(f"{img_name}", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-
+        print(" "*20 + "Done!")
+    print(f"Finished displaying files in folder: '{ASSETS_DIR}'.")
     return 0
+
