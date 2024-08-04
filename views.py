@@ -20,7 +20,11 @@ def display_images(folder: str):
         print(f"Displaying {img_name}...")
 
         img = cv2.imread(f"assets/{img_name}", 0)
-        img = cv2.resize(img, (400, 400))
+        (img_height, img_width) = img.shape[:2]
+        aspect_ratio = img_height / img_width
+        new_width = 500
+        new_height = int(new_width * aspect_ratio)
+        img = cv2.resize(img, (new_width, new_height))
 
         cv2.imshow(f"{img_name}", img)
         cv2.waitKey(0)
