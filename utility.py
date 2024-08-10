@@ -9,13 +9,13 @@ def is_folder_empty(folder: str):
 
 
 def should_rename_files_in_folder(folder: str):
-    folder = folder
     filename_list = os.listdir(folder)
     if len(filename_list) == 0:
         return False
+    alphabet = set("0123456789() ")
 
-    for number, filename in enumerate(filename_list):
-        if str(number) == filename[:len(str(number))]:
+    for filename in filename_list:
+        if all(char in alphabet for char in os.path.splitext(filename)[0]):
             continue
         else:
             return True
@@ -25,7 +25,6 @@ def should_rename_files_in_folder(folder: str):
 def rename_files_in_folder(folder: str):
     folder = folder
     filename_list = os.listdir(folder)
-
     for number, filename in enumerate(filename_list):
         source = f"{folder}/{filename}"
         extension = filename.split(".").pop()
