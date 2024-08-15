@@ -23,8 +23,10 @@ def should_rename_files_in_folder(folder: str):
 
 
 def rename_files_in_folder(folder: str):
+    # todo make the function more reliable
     folder = folder
     filename_list = os.listdir(folder)
+
     for number, filename in enumerate(filename_list):
         source = f"{folder}/{filename}"
         extension = filename.split(".").pop()
@@ -32,7 +34,3 @@ def rename_files_in_folder(folder: str):
         os.rename(source, f"{folder}/{destination}")
 
     return 0
-
-
-def resize_image(image):
-    pass

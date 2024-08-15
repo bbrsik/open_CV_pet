@@ -17,8 +17,7 @@ while True:
         case "2":
             camera()
         case "3":
-            object_detector(haarcascade_filepath=f"{MODELS_DIR}/haarcascade_frontalface_default.xml",
-                            capture_file=f"{VIDEOS_DIR}/Minion.mp4")
+            object_detector(haarcascade_filepath=f"{MODELS_DIR}/haarcascade_frontalface_default.xml")
         case "4":
             image_scanner(haarcascade_filepath=f"{MODELS_DIR}/haarcascade_frontalface_default.xml",
                           folder=f"{ASSETS_DIR}/")
